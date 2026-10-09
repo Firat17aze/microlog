@@ -114,11 +114,10 @@ TEST_CASE_FIXTURE(TestFixture, "Maximum Level String") {
 TEST_CASE_FIXTURE(TestFixture, "Custom levels stay within the name table") {
     ulog_cleanup();
     ulog_output_add(ut_callback, nullptr, ULOG_LEVEL_TRACE);
-    const char *previous_name = ulog_level_to_string(ULOG_LEVEL_INFO);
+    const char *previous_name    = ulog_level_to_string(ULOG_LEVEL_INFO);
     ulog_level_descriptor levels = {
         .max_level = ULOG_LEVEL_TOTAL,
-        .names = {"L0", "L1", "L2", "L3", "L4", "L5", "L6", "L7"}
-    };
+        .names     = {"L0", "L1", "L2", "L3", "L4", "L5", "L6", "L7"}};
     CHECK(ulog_level_set_new_levels(&levels) == ULOG_STATUS_INVALID_ARGUMENT);
     CHECK(ulog_level_to_string(ULOG_LEVEL_INFO) == previous_name);
 
